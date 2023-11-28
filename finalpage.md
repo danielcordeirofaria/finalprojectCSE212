@@ -154,13 +154,93 @@
      - The tree is a non-sequential structure, very useful for storing data in a hierarchical manner and which can be accessed quickly.
      A tree can be defined as a collection of data represented by nodes and arranged in hierarchical levels (instead of sequences like the structures seen previously).
      An example of a tree structure is company organization charts.
-     The most common structure is the binary tree, which has a maximum of two child nodes from the initial node (called the root). A node can have parents, siblings and children; Nodes that have at least one child are called internal nodes, and nodes without children are called external or leaf nodes:
-    ![image about tree](/finalProject/tree.drawio.png)
+     The most common structure is the binary tree, which has a maximum of two child nodes from the initial node (called the root). A node can have parents, siblings and children; Nodes that have at least one child are called internal nodes, and nodes without children are called external or leaf nodes, how you can see in the link.
+
+        - https://raw.githubusercontent.com/danielcordeirofaria/finalprojectCSE212/main/tree.drawio.png
+
+     From the binary tree structure (with one child node to the left and one to the right of the root) it is possible to structure the so-called BST, or binary search tree, which uses the principle of the binary search algorithm to structure the data so that smaller values are to the left of the root and larger values to the right. This union of the algorithm with the data structure leads to greater efficiency in data manipulation, whether to search, change, include or remove elements.
 
    - What is the performance of Tree?
-     - Time complexities for common tree operations are discussed, including insertion, search, and removal in BST, AVL trees, Red-Black trees, B-trees, and Trie trees.
-   - Problems that can be solved with a Tree
-     - Trees are versatile and used in various applications, such as decision-making algorithms, indexing databases, file explorers, and sorting algorithms.
-   - Applied example
-     - Examples of practical uses of trees in decision-making algorithms and file exploration.
+     - The performance (time complexity) of a tree may vary depending on the specific type of tree and the operation performed. Here are some of the typical time complexities for different operations on common trees:
 
+       - Binary Search Trees (BST):
+
+         - Insertion: O(log n) - In a balanced binary search tree, insertion occurs in logarithmic time.
+         - Search: O(log n) - Search is also logarithmic in a balanced BST.
+         - Removal: O(log n) - Removal in a balanced BST is logarithmic.
+         - AVL Trees and Red-Black Trees:
+
+         - Insert: O(log n) - These self-balancing trees ensure that the height of the tree is maintained at a logarithmic level.
+         - Search: O(log n) - Search is logarithmic in an AVL tree or balanced red and black tree.
+         - Removal: O(log n) - Removal in an AVL tree or balanced red and black tree is logarithmic.
+
+       - B-Trees:
+
+         - Insertion: O(log n) - B-trees also have a logarithmic complexity for insertion.
+         - Search: O(log n) - The search in a B-tree is logarithmic.
+         - Removal: O(log n) - Removal in a B-tree is logarithmic.
+
+       - Trie Trees:
+
+         - Insertion: O(m), where m is the key length - Complexity depends on the key length.
+         - Search: O(m), where m is the key length - Complexity depends on the key length.
+         - Heap Trees (Binary Heap, Binomial Heap, Fibonacci Heap, etc.):
+         - Insertion: O(log n) - Insertion occurs in logarithmic time.
+         - Minimum (or Maximum) Removal: O(log n) - Removing the minimum (or maximum) in a heap is logarithmic.
+         - Trie Trees (Radix Tree) for Strings:
+         - Insertion: O(m), where m is the length of the string - Complexity depends on the length of the string.
+         - Search: O(m), where m is the length of the string - Complexity depends on the length of the string.
+
+       - These time complexities are average or worst cases depending on the specific tree structure. In specific cases, the implementation and choice of data structure can impact these complexities. It is always important to consider problem-specific characteristics when choosing a tree to ensure desired performance for relevant operations.
+
+   - Problems that can be solved with a Tree
+     - The tree structure has several diverse uses, such as decision-making algorithms in machine learning, indexing databases, indexing and displaying files and folders in the file explorer of operating systems, among several other cases.
+
+     The binary heap, as we have already mentioned, is used in priority queues (a special type of queue where elements are removed from the queue not in the FIFO pattern, but organized by priority: more priority at the beginning of the queue and less priority at the end) and also in a specific sorting algorithm, heap sort.
+
+   - Applied example
+     
+     - In this example, we created a TreeNode class to represent the nodes of the tree. The tree_sum function calculates the sum of all elements in the tree recursively. The example creates a sample tree and calculates the sum of its elements. This is a simple example, and trees can be used to solve a variety of more complex problems, such as search algorithms, sorting, etc.
+
+        class TreeNode:
+          def __init__(self, value):
+              self.value = value
+              self.left = None
+              self.right = None
+  
+          def tree_sum(root):
+              """
+              Function that calculates the sum of all elements in a binary tree.
+          
+              Args:
+              - root: The root node of the tree.
+          
+              Returns:
+              - The sum of all elements in the tree.
+              """
+              if root is None:
+                  return 0
+          
+              # The sum is the value of the current node plus the sum of the left and right subtrees
+              return root.value + tree_sum(root.left) + tree_sum(root.right)
+          
+          # Creating an example tree
+          #       5
+          #      / \
+          #     3   8
+          #    /|   |\
+          #   1  4  6  9
+          root = TreeNode(5)
+          root.left = TreeNode(3)
+          root.right = TreeNode(8)
+          root.left.left = TreeNode(1)
+          root.left.right = TreeNode(4)
+          root.right.left = TreeNode(6)
+          root.right.right = TreeNode(9)
+          
+          # Calculating the sum of the tree
+          total_sum = tree_sum(root)
+          
+          # Displaying the result
+          print("The sum of all elements in the tree is:", total_sum)
+  
